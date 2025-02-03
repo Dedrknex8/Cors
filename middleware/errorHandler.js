@@ -8,11 +8,11 @@ class APIError extends Error {
     }
 }
 const asyncHandler =(fn)=>(req,res,next) =>{
-    Promise.resolve(fn(req,res,next)).catch(next);
+    Promise.resolve(fn(req,res,next)).catch((err) => next(err));
 }
 
 const globalErrorHandler = (err,req,res,next) =>{
-    console.log(err.stack); //log the error stack
+    console.error(err.stack); //log the error stack
     
     if(err instanceof APIError){
         return res.status(err.statusCode).json({

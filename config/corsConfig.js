@@ -10,7 +10,7 @@ const corsConfig = ()=>{
                 'https://yourCustomDomain.com' //production domain
             ]
 
-            if(!origin || allowedOrigins(origin) !== -1){
+            if(!origin || allowedOrigins.includes !== -1){
                 callback(null,true); //giving perm so that request can be allowed
             }else{
                 callback(new Error('Not allowd by cors'))

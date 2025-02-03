@@ -1,4 +1,4 @@
-
+// 3 Types of apiVersioning urlVersoning,headerVersoning,Content-typeVersoinig
 const urlVersoning = (version) => (req,res,next)=>{
     if(req.path.startsWith(`/api/${version}`)){
         next();
@@ -20,3 +20,10 @@ const headerVersioning = (version) => (req,res,next)=>{
         });
     }
 }
+
+const contentTypeVersoning = (version)=>(req,res,next)=>{
+    const contentType = req.get('Content-Type');
+    if(contentType && contentType.includes(`application/vndd.api.${version}+json`));
+}; 
+
+module.exports = { urlVersoning,headerVersioning,contentTypeVersoning }
